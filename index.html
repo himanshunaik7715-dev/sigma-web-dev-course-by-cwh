@@ -1,11 +1,159 @@
+<!--
+Exercise 3
+1}card.png is a file that contain a card Image.Write html and CSS code to design this card 
+2}I use this image (Photo by David Bartus from Pexels: https://www.pexels.com/photo/brown-wooden-dock-during-sunset-963272/) 
+-->
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
-</head>
-<body>
-   Hello! I am Himanshu. 
-</body>
-</html>
+    <title>CSS exercise 3</title>
+    <style>
+        * {
+            margin: 0px;
+            padding: 0px;
+        }
+
+        body {
+            background-color: rgba(182, 242, 242, 0.886);
+        }
+
+        .container {
+            position: relative;
+            margin: 15px;
+            padding: 5px;
+            height: 650px;
+            width: 400px;
+            border: 2px solid grey;
+            background-color: white;
+            border-radius: 20px;
+            box-shadow: 10px 15px 5px lightgray;
+        }
+
+        .box {
+            margin: 0px;
+            padding: 0px;
+            height: 300px;
+            width: 100px;
+            border: 3px solid gray;
+        }
+
+        .box1 {
+            position: relative;
+            top: 10px;
+            left: 10px;
+            right: 10px;
+            bottom: 10px;
+            height: 280px;
+            width: 380px;
+            border: 1px solid gray;
+            border-radius: 20px;
+        }
+
+        img {
+            border-radius: 20px;
+            height: 280px;
+            width: 380px;
+        }
+
+        .himan {
+            height: 50px;
+            width: 50px;
+        }
+
+        .box2 {
+            position: relative;
+            font-size: 1.5em;
+            padding: 10px;
+            color: gray;
+            border: 1px solid black;
+            border-radius: 50px;
+            border-color: gray;
+            height: fit-content;
+        }
+
+        .box3 {
+            position: relative;
+            font-size: 1.5em;
+            padding: 10px;
+            color: gray;
+            border: 1px solid black;
+            border-radius: 50px;
+            border-color: gray;
+            height: fit-content;
+        }
+
+        .box4 {
+            position: relative;
+            left: 130px;
+            font-size: 1.5em;
+            padding: 10px;
+            background-color: lightblue;
+            color: rgba(72, 168, 246, 0.928);
+            border: 1px;
+            border-radius: 20px;
+            border-color: lightblue;
+            height: fit-content;
+            align-items: center;
+        }
+
+        div>h1 {
+            margin: 15px;
+            /* padding: 15px; */
+            color: black;
+        }
+
+        div>pre {
+            margin: 15px;
+            font-size: 1.2em;
+            color: gray;
+        }
+
+        span>img {
+            position: absolute;
+            top: 480px;
+            left: 260px;
+            padding: 15px;
+            width: 100px;
+            height: 100px;
+            font-size: 1.2em;
+        }
+    </style>
+    </head2 <body>
+
+    <div class="container">
+        <div class="box box1"><img src="card.jpg"></div><br>&nbsp;&nbsp;&nbsp;
+        <span class="box1 box2">Nature</span>
+        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+        <span class="box1 box3">Lake</span><br><br>
+        <div>
+            <h1>Dooron Dooron</h1>
+            <div>
+                <pre>Dooron Dooron Main Vekhan Tenu Soniyo
+Kaha Tu Kaha Main
+Dooran Dooran Main Vekhan Tenu Soniyo
+Kaha Tu Kaha Main
+</pre>
+                <pre class="hima">Ki Main Kara Ke Main
+Aawan Nazar Tenu
+Laayak Tere Kive Hova
+Tu Dass Mainu</pre>
+            </div>
+        </div>
+        <span class="box1 box4">Read More</span>
+        <span style="cursor:pointer;" id="box">
+            <img src="playicon.png">
+            <audio id="sound" src="audio2.mp3"></audio>
+        </span>
+    </div>
+    <script>
+    document.getElementById("box").onclick = function () {
+    const audio2 = document.getElementById("sound");
+    audio2.currentTime = 0;
+    audio2.play();
+    };
+    </script>
+    </body>
+</html>    
