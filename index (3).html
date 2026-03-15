@@ -1,0 +1,2275 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Order.uk - Order Restaurant Food, Takeaway and Groceries</title>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Inter', sans-serif;
+            background-color: #f8f9fa;
+            color: #1a1a1a;
+        }
+
+        /* Top Banner */
+        .top-banner {
+            background: #fff;
+            padding: 8px 0;
+            border-bottom: 1px solid #eee;
+        }
+
+        .top-banner-content {
+            max-width: 1200px;
+            margin: 0 auto;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 0 20px;
+            font-size: 12px;
+        }
+
+        .promo-text {
+            color: #666;
+        }
+
+        .promo-text span {
+            color: #ff6b00;
+            font-weight: 600;
+        }
+
+        .location {
+            display: flex;
+            align-items: center;
+            gap: 5px;
+            color: #666;
+        }
+
+        .location-icon {
+            color: #ff6b00;
+        }
+
+        .change-location {
+            color: #ff6b00;
+            text-decoration: none;
+            margin-left: 5px;
+        }
+
+        .cart-info {
+            display: flex;
+            align-items: center;
+            gap: 15px;
+        }
+
+        .cart-badge {
+            background: #ff6b00;
+            color: white;
+            padding: 4px 12px;
+            border-radius: 20px;
+            font-weight: 600;
+            font-size: 11px;
+        }
+
+        .cart-total {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            background: #1a1a1a;
+            color: white;
+            padding: 4px 12px;
+            border-radius: 20px;
+            font-size: 11px;
+        }
+
+        /* Navigation */
+        .navbar {
+            background: #fff;
+            padding: 15px 0;
+            position: sticky;
+            top: 0;
+            z-index: 100;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.05);
+        }
+
+        .navbar-content {
+            max-width: 1200px;
+            margin: 0 auto;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 0 20px;
+        }
+
+        .logo {
+            font-size: 28px;
+            font-weight: 700;
+            color: #1a1a1a;
+            display: flex;
+            align-items: center;
+            gap: 2px;
+        }
+
+        .logo-dot {
+            color: #ff6b00;
+        }
+
+        .nav-links {
+            display: flex;
+            gap: 30px;
+            list-style: none;
+        }
+
+        .nav-links a {
+            text-decoration: none;
+            color: #333;
+            font-size: 14px;
+            font-weight: 500;
+            transition: color 0.3s;
+        }
+
+        .nav-links a:hover,
+        .nav-links a.active {
+            color: #ff6b00;
+        }
+
+        .nav-links a.active {
+            background: #ff6b00;
+            color: white;
+            padding: 8px 20px;
+            border-radius: 25px;
+        }
+
+        .login-btn {
+            background: #1a1a1a;
+            color: white;
+            padding: 10px 25px;
+            border-radius: 25px;
+            text-decoration: none;
+            font-size: 14px;
+            font-weight: 500;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+
+        .login-btn::before {
+            content: "👤";
+        }
+
+        /* Hero Section */
+        .hero {
+            background: linear-gradient(135deg, #1a1a2e 0%, #16213e 100%);
+            padding: 60px 0;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .hero-content {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 20px;
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 40px;
+            align-items: center;
+        }
+
+        .hero-left {
+            color: white;
+        }
+
+        .hero-subtitle {
+            font-size: 14px;
+            color: #aaa;
+            margin-bottom: 15px;
+        }
+
+        .hero-title {
+            font-size: 48px;
+            font-weight: 700;
+            line-height: 1.2;
+            margin-bottom: 20px;
+        }
+
+        .hero-title .highlight {
+            color: #ff6b00;
+        }
+
+        .hero-description {
+            color: #aaa;
+            font-size: 14px;
+            margin-bottom: 25px;
+        }
+
+        .search-box {
+            display: flex;
+            background: white;
+            border-radius: 50px;
+            overflow: hidden;
+            max-width: 400px;
+        }
+
+        .search-box input {
+            flex: 1;
+            padding: 15px 25px;
+            border: none;
+            outline: none;
+            font-size: 14px;
+        }
+
+        .search-box input::placeholder {
+            color: #999;
+        }
+
+        .search-btn {
+            background: #ff6b00;
+            color: white;
+            border: none;
+            padding: 15px 30px;
+            font-weight: 600;
+            cursor: pointer;
+            font-size: 14px;
+        }
+
+        .hero-right {
+            position: relative;
+        }
+
+        .hero-image {
+            width: 100%;
+            max-width: 500px;
+            border-radius: 20px;
+        }
+
+        .order-cards {
+            position: absolute;
+            right: -20px;
+            top: 20%;
+            display: flex;
+            flex-direction: column;
+            gap: 15px;
+        }
+
+        .order-card {
+            background: white;
+            border-radius: 15px;
+            padding: 15px;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.2);
+            min-width: 200px;
+        }
+
+        .order-card-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 8px;
+        }
+
+        .order-card-title {
+            font-size: 12px;
+            font-weight: 600;
+            color: #1a1a1a;
+        }
+
+        .order-card-status {
+            font-size: 10px;
+            color: #ff6b00;
+            background: #fff3e6;
+            padding: 2px 8px;
+            border-radius: 10px;
+        }
+
+        .order-card-text {
+            font-size: 11px;
+            color: #666;
+        }
+
+        .card-number {
+            position: absolute;
+            right: -10px;
+            font-size: 48px;
+            font-weight: 700;
+            color: rgba(255,107,0,0.3);
+        }
+
+        /* Deals Section */
+        .deals-section {
+            padding: 50px 0;
+            background: #fff;
+        }
+
+        .section-header {
+            max-width: 1200px;
+            margin: 0 auto 30px;
+            padding: 0 20px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .section-title {
+            font-size: 24px;
+            font-weight: 700;
+        }
+
+        .section-title span {
+            color: #ff6b00;
+        }
+
+        .filter-tabs {
+            display: flex;
+            gap: 15px;
+        }
+
+        .filter-tab {
+            padding: 8px 20px;
+            border-radius: 20px;
+            font-size: 13px;
+            cursor: pointer;
+            transition: all 0.3s;
+        }
+
+        .filter-tab {
+            background: #f5f5f5;
+            color: #666;
+        }
+
+        .filter-tab.active {
+            background: #ff6b00;
+            color: white;
+        }
+
+        .deals-grid {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 20px;
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 20px;
+        }
+
+        .deal-card {
+            position: relative;
+            border-radius: 20px;
+            overflow: hidden;
+            height: 200px;
+        }
+
+        .deal-card img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+
+        .deal-overlay {
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            right: 0;
+            padding: 20px;
+            background: linear-gradient(transparent, rgba(0,0,0,0.8));
+            color: white;
+        }
+
+        .deal-badge {
+            position: absolute;
+            top: 15px;
+            left: 15px;
+            background: #ff6b00;
+            color: white;
+            padding: 5px 12px;
+            border-radius: 20px;
+            font-size: 12px;
+            font-weight: 600;
+        }
+
+        .deal-type {
+            font-size: 11px;
+            color: #ff6b00;
+            margin-bottom: 5px;
+        }
+
+        .deal-name {
+            font-size: 16px;
+            font-weight: 600;
+        }
+
+        /* Categories Section */
+        .categories-section {
+            padding: 50px 0;
+            background: #f8f9fa;
+        }
+
+        .categories-grid {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 20px;
+            display: grid;
+            grid-template-columns: repeat(6, 1fr);
+            gap: 15px;
+        }
+
+        .category-card {
+            background: white;
+            border-radius: 20px;
+            overflow: hidden;
+            text-align: center;
+            transition: transform 0.3s;
+            cursor: pointer;
+        }
+
+        .category-card:hover {
+            transform: translateY(-5px);
+        }
+
+        .category-image {
+            height: 100px;
+            overflow: hidden;
+        }
+
+        .category-image img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+
+        .category-info {
+            padding: 15px;
+        }
+
+        .category-name {
+            font-size: 13px;
+            font-weight: 600;
+            color: #1a1a1a;
+            margin-bottom: 5px;
+        }
+
+        .category-count {
+            font-size: 11px;
+            color: #666;
+        }
+
+        /* Popular Restaurants */
+        .restaurants-section {
+            padding: 50px 0;
+            background: #fff;
+        }
+
+        .restaurants-grid {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 20px;
+            display: grid;
+            grid-template-columns: repeat(6, 1fr);
+            gap: 20px;
+        }
+
+        .restaurant-card {
+            background: white;
+            border-radius: 20px;
+            overflow: hidden;
+            box-shadow: 0 5px 20px rgba(0,0,0,0.08);
+            transition: transform 0.3s;
+            cursor: pointer;
+        }
+
+        .restaurant-card:hover {
+            transform: translateY(-5px);
+        }
+
+        .restaurant-logo {
+            height: 100px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            padding: 20px;
+        }
+
+        .restaurant-logo img {
+            max-width: 100%;
+            max-height: 60px;
+            object-fit: contain;
+        }
+
+        .restaurant-info {
+            padding: 15px;
+            text-align: center;
+        }
+
+        .restaurant-name {
+            font-size: 13px;
+            font-weight: 600;
+            color: #1a1a1a;
+        }
+
+        /* App Download Section */
+        .app-section {
+            padding: 60px 0;
+            background: #f0f7ff;
+        }
+
+        .app-content {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 20px;
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 40px;
+            align-items: center;
+        }
+
+        .app-image img {
+            width: 100%;
+            max-width: 450px;
+            border-radius: 20px;
+        }
+
+        .app-right {
+            text-align: center;
+        }
+
+        .app-title {
+            font-size: 36px;
+            font-weight: 700;
+            margin-bottom: 15px;
+        }
+
+        .app-title .highlight {
+            color: #ff6b00;
+        }
+
+        .app-subtitle {
+            font-size: 18px;
+            color: #666;
+            margin-bottom: 10px;
+        }
+
+        .app-description {
+            font-size: 14px;
+            color: #888;
+            margin-bottom: 25px;
+        }
+
+        .app-buttons {
+            display: flex;
+            gap: 15px;
+            justify-content: center;
+        }
+
+        .app-btn {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            background: #1a1a1a;
+            color: white;
+            padding: 12px 25px;
+            border-radius: 10px;
+            text-decoration: none;
+            font-size: 13px;
+        }
+
+        .app-btn-icon {
+            font-size: 24px;
+        }
+
+        .app-btn-text {
+            text-align: left;
+        }
+
+        .app-btn-small {
+            font-size: 10px;
+            color: #aaa;
+        }
+
+        .app-btn-large {
+            font-size: 14px;
+            font-weight: 600;
+        }
+
+        /* Partner Section */
+        .partner-section {
+            padding: 50px 0;
+            background: #fff;
+        }
+
+        .partner-grid {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 20px;
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 20px;
+        }
+
+        .partner-card {
+            position: relative;
+            border-radius: 20px;
+            overflow: hidden;
+            height: 250px;
+        }
+
+        .partner-card img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+
+        .partner-overlay {
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            right: 0;
+            padding: 30px;
+            background: linear-gradient(transparent, rgba(0,0,0,0.8));
+            color: white;
+        }
+
+        .partner-badge {
+            background: #ff6b00;
+            color: white;
+            padding: 5px 15px;
+            border-radius: 20px;
+            font-size: 11px;
+            display: inline-block;
+            margin-bottom: 10px;
+        }
+
+        .partner-title {
+            font-size: 24px;
+            font-weight: 700;
+            margin-bottom: 15px;
+        }
+
+        .partner-btn {
+            background: #ff6b00;
+            color: white;
+            padding: 10px 25px;
+            border-radius: 25px;
+            text-decoration: none;
+            font-size: 13px;
+            font-weight: 600;
+            display: inline-block;
+        }
+
+        /* FAQ Section */
+        .faq-section {
+            padding: 60px 0;
+            background: #f8f9fa;
+        }
+
+        .faq-content {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 20px;
+        }
+
+        .faq-header {
+            text-align: center;
+            margin-bottom: 40px;
+        }
+
+        .faq-title {
+            font-size: 28px;
+            font-weight: 700;
+            margin-bottom: 20px;
+        }
+
+        .faq-tabs {
+            display: flex;
+            justify-content: center;
+            gap: 15px;
+        }
+
+        .faq-tab {
+            padding: 10px 25px;
+            border-radius: 25px;
+            font-size: 13px;
+            cursor: pointer;
+            transition: all 0.3s;
+        }
+
+        .faq-tab {
+            background: white;
+            color: #666;
+        }
+
+        .faq-tab.active {
+            background: #ff6b00;
+            color: white;
+        }
+
+        .faq-grid {
+            display: grid;
+            grid-template-columns: 1fr 2fr;
+            gap: 40px;
+        }
+
+        .faq-questions {
+            background: white;
+            border-radius: 20px;
+            padding: 25px;
+        }
+
+        .faq-question {
+            padding: 15px 0;
+            border-bottom: 1px solid #eee;
+            font-size: 14px;
+            color: #333;
+            cursor: pointer;
+            transition: color 0.3s;
+        }
+
+        .faq-question:hover,
+        .faq-question.active {
+            color: #ff6b00;
+        }
+
+        .faq-question:last-child {
+            border-bottom: none;
+        }
+
+        .faq-steps {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 20px;
+        }
+
+        .step-card {
+            background: white;
+            border-radius: 20px;
+            padding: 30px;
+            text-align: center;
+        }
+
+        .step-icon {
+            width: 60px;
+            height: 60px;
+            background: #fff3e6;
+            border-radius: 15px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin: 0 auto 15px;
+            font-size: 28px;
+        }
+
+        .step-title {
+            font-size: 16px;
+            font-weight: 600;
+            margin-bottom: 10px;
+        }
+
+        .step-description {
+            font-size: 12px;
+            color: #666;
+            line-height: 1.6;
+        }
+
+        .faq-footer {
+            text-align: center;
+            margin-top: 30px;
+            font-size: 13px;
+            color: #666;
+        }
+
+        /* Stats Section */
+        .stats-section {
+            background: #ff6b00;
+            padding: 40px 0;
+        }
+
+        .stats-grid {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 20px;
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            gap: 30px;
+            text-align: center;
+        }
+
+        .stat-item {
+            color: white;
+        }
+
+        .stat-number {
+            font-size: 36px;
+            font-weight: 700;
+            margin-bottom: 5px;
+        }
+
+        .stat-label {
+            font-size: 13px;
+            opacity: 0.9;
+        }
+
+        /* Footer */
+        .footer {
+            background: #1a1a1a;
+            color: white;
+            padding: 60px 0 30px;
+        }
+
+        .footer-content {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 20px;
+            display: grid;
+            grid-template-columns: 2fr 1fr 1fr 1fr;
+            gap: 40px;
+        }
+
+        .footer-brand {
+            max-width: 300px;
+        }
+
+        .footer-logo {
+            font-size: 28px;
+            font-weight: 700;
+            margin-bottom: 20px;
+        }
+
+        .footer-logo span {
+            color: #ff6b00;
+        }
+
+        .footer-newsletter {
+            margin-bottom: 20px;
+        }
+
+        .footer-newsletter-title {
+            font-size: 14px;
+            margin-bottom: 15px;
+        }
+
+        .newsletter-form {
+            display: flex;
+            gap: 10px;
+        }
+
+        .newsletter-form input {
+            flex: 1;
+            padding: 12px 15px;
+            border-radius: 8px;
+            border: none;
+            background: #333;
+            color: white;
+            font-size: 13px;
+        }
+
+        .newsletter-form input::placeholder {
+            color: #888;
+        }
+
+        .newsletter-form button {
+            background: #ff6b00;
+            color: white;
+            border: none;
+            padding: 12px 25px;
+            border-radius: 8px;
+            font-weight: 600;
+            cursor: pointer;
+            font-size: 13px;
+        }
+
+        .footer-social {
+            display: flex;
+            gap: 15px;
+            margin-top: 20px;
+        }
+
+        .social-icon {
+            width: 40px;
+            height: 40px;
+            background: #333;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: white;
+            text-decoration: none;
+            font-size: 16px;
+            transition: background 0.3s;
+        }
+
+        .social-icon:hover {
+            background: #ff6b00;
+        }
+
+        .footer-column h4 {
+            font-size: 14px;
+            margin-bottom: 20px;
+            color: #fff;
+        }
+
+        .footer-links {
+            list-style: none;
+        }
+
+        .footer-links li {
+            margin-bottom: 12px;
+        }
+
+        .footer-links a {
+            color: #888;
+            text-decoration: none;
+            font-size: 13px;
+            transition: color 0.3s;
+        }
+
+        .footer-links a:hover {
+            color: #ff6b00;
+        }
+
+        .footer-bottom {
+            max-width: 1200px;
+            margin: 40px auto 0;
+            padding: 20px 20px 0;
+            border-top: 1px solid #333;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            font-size: 12px;
+            color: #666;
+        }
+
+        .footer-bottom-links {
+            display: flex;
+            gap: 20px;
+        }
+
+        .footer-bottom-links a {
+            color: #888;
+            text-decoration: none;
+        }
+
+        /* Popups / Modals */
+        .modal-overlay {
+            position: fixed;
+            inset: 0;
+            background: rgba(0, 0, 0, 0.6);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            padding: 20px;
+            z-index: 1000;
+            opacity: 0;
+            pointer-events: none;
+            transition: opacity 0.25s ease;
+        }
+
+        .modal-overlay.is-open {
+            opacity: 1;
+            pointer-events: auto;
+        }
+
+        .modal {
+            background: #ffffff;
+            border-radius: 20px;
+            max-width: 900px;
+            width: 100%;
+            max-height: 90vh;
+            overflow-y: auto;
+            box-shadow: 0 18px 45px rgba(0, 0, 0, 0.25);
+            position: relative;
+        }
+
+        .modal-header-bar {
+            position: relative;
+            width: 100%;
+            height: 140px;
+            background-size: cover;
+            background-position: center;
+            border-radius: 20px 20px 0 0;
+        }
+
+        .modal-header-bar::after {
+            content: "";
+            position: absolute;
+            inset: 0;
+            background: linear-gradient(to bottom, rgba(0, 0, 0, 0.55), transparent 45%);
+            border-radius: inherit;
+        }
+
+        .modal-close {
+            position: absolute;
+            top: 18px;
+            right: 18px;
+            width: 38px;
+            height: 38px;
+            border-radius: 50%;
+            border: none;
+            background: #ff6b00;
+            color: #fff;
+            font-size: 20px;
+            font-weight: 700;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            cursor: pointer;
+            z-index: 2;
+        }
+
+        .modal-body {
+            padding: 24px 26px 26px;
+        }
+
+        .modal-title {
+            font-size: 22px;
+            font-weight: 700;
+            margin-bottom: 10px;
+        }
+
+        .modal-subtitle {
+            font-size: 14px;
+            color: #666;
+            margin-bottom: 18px;
+        }
+
+        .modal-actions {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            gap: 15px;
+            margin-top: 22px;
+            flex-wrap: wrap;
+        }
+
+        .btn {
+            border: none;
+            border-radius: 999px;
+            padding: 12px 26px;
+            font-size: 14px;
+            font-weight: 600;
+            cursor: pointer;
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            gap: 8px;
+            text-decoration: none;
+            white-space: nowrap;
+        }
+
+        .btn-primary {
+            background: #0ca44a;
+            color: #fff;
+        }
+
+        .btn-secondary {
+            background: #f3f4f6;
+            color: #111827;
+        }
+
+        .btn-ghost {
+            background: transparent;
+            color: #4b5563;
+        }
+
+        .modal-footer-note {
+            font-size: 11px;
+            color: #9ca3af;
+            margin-top: 8px;
+        }
+
+        /* Basket popup */
+        .basket-layout {
+            display: grid;
+            grid-template-columns: 1.1fr 0.9fr;
+            gap: 24px;
+        }
+
+        .basket-items {
+            display: flex;
+            flex-direction: column;
+            gap: 14px;
+        }
+
+        .basket-item {
+            display: grid;
+            grid-template-columns: auto 1fr auto;
+            gap: 10px;
+            padding: 12px 14px;
+            border-radius: 14px;
+            background: #f9fafb;
+            align-items: center;
+        }
+
+        .basket-qty {
+            width: 32px;
+            height: 32px;
+            border-radius: 999px;
+            background: #ffedd5;
+            color: #f97316;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-weight: 700;
+            font-size: 13px;
+        }
+
+        .basket-info-title {
+            font-size: 14px;
+            font-weight: 600;
+            margin-bottom: 3px;
+        }
+
+        .basket-info-meta {
+            font-size: 11px;
+            color: #6b7280;
+        }
+
+        .basket-price {
+            font-weight: 600;
+            font-size: 14px;
+        }
+
+        .basket-summary {
+            background: #f9fafb;
+            border-radius: 14px;
+            padding: 14px 16px;
+            font-size: 13px;
+        }
+
+        .basket-summary-row {
+            display: flex;
+            justify-content: space-between;
+            margin-bottom: 4px;
+        }
+
+        .basket-summary-row.total {
+            font-weight: 700;
+            margin-top: 6px;
+        }
+
+        .basket-warning {
+            margin-top: 14px;
+            padding: 10px 12px;
+            border-radius: 10px;
+            background: #111827;
+            color: #f9fafb;
+            font-size: 11px;
+        }
+
+        .basket-warning span {
+            color: #ffb800;
+            font-weight: 600;
+        }
+
+        /* Pizza options popup */
+        .options-layout {
+            display: flex;
+            flex-direction: column;
+            gap: 18px;
+        }
+
+        .options-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            gap: 12px;
+            flex-wrap: wrap;
+            margin-bottom: 15px;
+        }
+
+        .options-header-count {
+            font-size: 13px;
+            color: #4b5563;
+        }
+
+        .options-header-count span {
+            color: #10b981;
+            font-weight: 600;
+        }
+
+        .options-group {
+            border-radius: 16px;
+            background: #f9fafb;
+            padding: 16px 18px;
+        }
+
+        .options-group-title {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            margin-bottom: 10px;
+            font-size: 15px;
+            font-weight: 600;
+        }
+
+        .options-grid {
+            display: grid;
+            grid-template-columns: repeat(3, minmax(0, 1fr));
+            gap: 10px;
+        }
+
+        .option-pill {
+            border-radius: 999px;
+            border: 1px solid #e5e7eb;
+            background: #ffffff;
+            padding: 9px 12px;
+            font-size: 13px;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            cursor: pointer;
+            user-select: none;
+        }
+
+        .option-pill input {
+            width: 16px;
+            height: 16px;
+            accent-color: #10b981;
+        }
+
+        .option-pill.is-selected {
+            border-color: #10b981;
+            background: #ecfdf5;
+        }
+
+        /* Postcode popup */
+        .postcode-layout {
+            display: grid;
+            grid-template-columns: minmax(0, 1.1fr) minmax(0, 0.9fr);
+            gap: 20px;
+            align-items: center;
+        }
+
+        .postcode-image {
+            border-radius: 18px;
+            overflow: hidden;
+        }
+
+        .postcode-image img {
+            width: 100%;
+            height: 100%;
+            max-height: 270px;
+            object-fit: cover;
+        }
+
+        .postcode-input-row {
+            display: flex;
+            margin-top: 14px;
+            gap: 10px;
+        }
+
+        .postcode-input-row input {
+            flex: 1;
+            border-radius: 999px;
+            border: 1px solid #e5e7eb;
+            padding: 12px 16px;
+            font-size: 14px;
+            outline: none;
+        }
+
+        .postcode-input-row input:focus {
+            border-color: #2563eb;
+            box-shadow: 0 0 0 1px rgba(37, 99, 235, 0.15);
+        }
+
+        /* Special request popup */
+        .request-textarea {
+            width: 100%;
+            min-height: 140px;
+            resize: vertical;
+            border-radius: 18px;
+            border: 1px solid #e5e7eb;
+            padding: 14px 14px;
+            font-size: 14px;
+            outline: none;
+        }
+
+        .request-textarea:focus {
+            border-color: #2563eb;
+            box-shadow: 0 0 0 1px rgba(37, 99, 235, 0.15);
+        }
+
+        /* Floating basket button */
+        .floating-basket-btn {
+            position: fixed;
+            bottom: 22px;
+            right: 22px;
+            z-index: 900;
+            display: inline-flex;
+            align-items: center;
+            gap: 10px;
+            padding: 12px 18px;
+            border-radius: 999px;
+            background: #111827;
+            color: #fff;
+            font-size: 13px;
+            font-weight: 600;
+            cursor: pointer;
+            box-shadow: 0 12px 30px rgba(0, 0, 0, 0.28);
+            max-width: 320px;
+        }
+
+        .floating-basket-btn span {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .floating-basket-btn-amount {
+            padding: 5px 10px;
+            border-radius: 999px;
+            background: #ff6b00;
+            font-size: 12px;
+        }
+
+        /* Responsive */
+        @media (max-width: 1024px) {
+            .hero-content {
+                grid-template-columns: 1fr;
+            }
+
+            .hero-right {
+                display: none;
+            }
+
+            .deals-grid {
+                grid-template-columns: repeat(2, 1fr);
+            }
+
+            .categories-grid,
+            .restaurants-grid {
+                grid-template-columns: repeat(3, 1fr);
+            }
+
+            .faq-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .faq-steps {
+                grid-template-columns: 1fr;
+            }
+
+            .footer-content {
+                grid-template-columns: repeat(2, 1fr);
+            }
+        }
+
+        @media (max-width: 768px) {
+            .nav-links {
+                display: none;
+            }
+
+            .deals-grid,
+            .categories-grid,
+            .restaurants-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .partner-grid,
+            .stats-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .app-content {
+                grid-template-columns: 1fr;
+            }
+
+            .app-image {
+                display: none;
+            }
+
+            .footer-content {
+                grid-template-columns: 1fr;
+            }
+
+                .footer-bottom {
+                flex-direction: column;
+                gap: 15px;
+                text-align: center;
+            }
+        }
+
+        @media (max-width: 640px) {
+            .modal {
+                border-radius: 0;
+                max-width: 100%;
+                height: 100vh;
+            }
+
+            .modal-header-bar {
+                border-radius: 0;
+            }
+
+            .basket-layout,
+            .postcode-layout {
+                grid-template-columns: 1fr;
+            }
+
+            .options-grid {
+                grid-template-columns: repeat(2, minmax(0, 1fr));
+            }
+
+            .modal-body {
+                padding: 18px 16px 20px;
+            }
+
+            .floating-basket-btn {
+                left: 12px;
+                right: 12px;
+                max-width: none;
+                justify-content: space-between;
+                font-size: 12px;
+                padding: 10px 14px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Top Banner -->
+    <div class="top-banner">
+        <div class="top-banner-content">
+            <div class="promo-text">
+                Get 5% Off your first order, <span>Promo: ORDER5</span>
+            </div>
+            <div class="location">
+                <span class="location-icon">📍</span>
+                <span>Regent Street, A4, A420, London</span>
+                <a href="#" class="change-location">Change Location</a>
+            </div>
+            <div class="cart-info">
+                <span class="cart-badge">23 items</span>
+                <div class="cart-total">
+                    <span>🛒</span>
+                    <span>GBP 79.89</span>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Navigation -->
+    <nav class="navbar">
+        <div class="navbar-content">
+            <div class="logo">Order<span class="logo-dot">.</span>uk</div>
+            <ul class="nav-links">
+                <li><a href="#" class="active">Home</a></li>
+                <li><a href="#">Browse Menu</a></li>
+                <li><a href="#">Special Offers</a></li>
+                <li><a href="#">Restaurants</a></li>
+                <li><a href="#">Track Order</a></li>
+            </ul>
+            <a href="#" class="login-btn">Login/Signup</a>
+        </div>
+    </nav>
+
+    <!-- Hero Section -->
+    <section class="hero">
+        <div class="hero-content">
+            <div class="hero-left">
+                <p class="hero-subtitle">Order Restaurant food, takeaway and groceries.</p>
+                <h1 class="hero-title">Feast Your Senses,<br><span class="highlight">Fast and Fresh</span></h1>
+                <p class="hero-description">Enter a postcode to see what we deliver</p>
+                <div class="search-box">
+                    <input type="text" placeholder="e.g. EC4R 3TE">
+                    <button class="search-btn" data-open-modal="postcodeModal">Find food</button>
+                </div>
+            </div>
+            <div class="hero-right">
+                <img src="https://images.unsplash.com/photo-1546069901-ba9599a7e63c?w=500&h=400&fit=crop" alt="Delicious Food" class="hero-image">
+                <div class="order-cards">
+                    <div class="order-card">
+                        <div class="order-card-header">
+                            <span class="order-card-title">Order</span>
+                            <span class="order-card-status">new</span>
+                        </div>
+                        <p class="order-card-text">We've Received your order! <span style="color: #ff6b00;">Awaiting Restaurant acceptance</span></p>
+                    </div>
+                    <div class="order-card">
+                        <div class="order-card-header">
+                            <span class="order-card-title">Order</span>
+                            <span class="order-card-status">new</span>
+                        </div>
+                        <p class="order-card-text">Order Accepted! <span style="color: #ff6b00;">✓</span> Your order will be delivered shortly</p>
+                    </div>
+                    <div class="order-card">
+                        <div class="order-card-header">
+                            <span class="order-card-title">Order</span>
+                            <span class="order-card-status">new</span>
+                        </div>
+                        <p class="order-card-text">Your rider's nearby <span style="color: #ff6b00;">🛵</span> They're almost there - get ready!</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Deals Section -->
+    <section class="deals-section">
+        <div class="section-header">
+            <h2 class="section-title">Up to -40% <span>🎉</span> Order.uk exclusive deals</h2>
+            <div class="filter-tabs">
+                <span class="filter-tab">Vegan</span>
+                <span class="filter-tab">Sushi</span>
+                <span class="filter-tab active">Pizza & Fast food</span>
+                <span class="filter-tab">others</span>
+            </div>
+        </div>
+        <div class="deals-grid">
+            <div class="deal-card">
+                <img src="https://images.unsplash.com/photo-1568901346375-23c9450c58cd?w=400&h=300&fit=crop" alt="Burgers">
+                <span class="deal-badge">-40%</span>
+                <div class="deal-overlay">
+                    <p class="deal-type">Restaurant</p>
+                    <h3 class="deal-name">Chef Burgers London</h3>
+                </div>
+            </div>
+            <div class="deal-card">
+                <img src="https://images.unsplash.com/photo-1565299624946-b28f40a0ae38?w=400&h=300&fit=crop" alt="Pizza">
+                <span class="deal-badge">-20%</span>
+                <div class="deal-overlay">
+                    <p class="deal-type">Restaurant</p>
+                    <h3 class="deal-name">Grand Ai Cafe London</h3>
+                </div>
+            </div>
+            <div class="deal-card">
+                <img src="https://images.unsplash.com/photo-1551782450-a2132b4ba21d?w=400&h=300&fit=crop" alt="Fast Food">
+                <span class="deal-badge">-17%</span>
+                <div class="deal-overlay">
+                    <p class="deal-type">Restaurant</p>
+                    <h3 class="deal-name">Butterbrot Caf'e London</h3>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Categories Section -->
+    <section class="categories-section">
+        <div class="section-header">
+            <h2 class="section-title">Order.uk Popular Categories <span>😋</span></h2>
+        </div>
+        <div class="categories-grid">
+            <div class="category-card">
+                <div class="category-image">
+                    <img src="https://images.unsplash.com/photo-1550547660-d9450f859349?w=200&h=150&fit=crop" alt="Burgers">
+                </div>
+                <div class="category-info">
+                    <h4 class="category-name">Burgers & Fast food</h4>
+                    <p class="category-count">21 Restaurants</p>
+                </div>
+            </div>
+            <div class="category-card">
+                <div class="category-image">
+                    <img src="https://images.unsplash.com/photo-1540189549336-e6e99c3679fe?w=200&h=150&fit=crop" alt="Salads">
+                </div>
+                <div class="category-info">
+                    <h4 class="category-name">Salads</h4>
+                    <p class="category-count">32 Restaurants</p>
+                </div>
+            </div>
+            <div class="category-card">
+                <div class="category-image">
+                    <img src="https://images.unsplash.com/photo-1473093295043-cdd812d0e601?w=200&h=150&fit=crop" alt="Pasta">
+                </div>
+                <div class="category-info">
+                    <h4 class="category-name">Pasta & Casuals</h4>
+                    <p class="category-count">4 Restaurants</p>
+                </div>
+            </div>
+            <div class="category-card">
+                <div class="category-image">
+                    <img src="https://images.unsplash.com/photo-1513104890138-7c749659a591?w=200&h=150&fit=crop" alt="Pizza">
+                </div>
+                <div class="category-info">
+                    <h4 class="category-name">Pizza</h4>
+                    <p class="category-count">32 Restaurants</p>
+                </div>
+            </div>
+            <div class="category-card">
+                <div class="category-image">
+                    <img src="https://images.unsplash.com/photo-1533089862017-5614ec95e214?w=200&h=150&fit=crop" alt="Breakfast">
+                </div>
+                <div class="category-info">
+                    <h4 class="category-name">Breakfast</h4>
+                    <p class="category-count">4 Restaurants</p>
+                </div>
+            </div>
+            <div class="category-card">
+                <div class="category-image">
+                    <img src="https://images.unsplash.com/photo-1547592166-23ac45744acd?w=200&h=150&fit=crop" alt="Soups">
+                </div>
+                <div class="category-info">
+                    <h4 class="category-name">Soups</h4>
+                    <p class="category-count">32 Restaurants</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Popular Restaurants -->
+    <section class="restaurants-section">
+        <div class="section-header">
+            <h2 class="section-title">Popular Restaurants</h2>
+        </div>
+        <div class="restaurants-grid">
+            <div class="restaurant-card">
+                <div class="restaurant-logo" style="background: #ffc72c;">
+                    <span style="font-size: 32px; font-weight: bold; color: #da291c;">M</span>
+                </div>
+                <div class="restaurant-info">
+                    <h4 class="restaurant-name">McDonald's London</h4>
+                    <button class="btn btn-secondary" data-open-modal="mealDealModal" style="margin-top:8px;width:100%;">View meal deal</button>
+                </div>
+            </div>
+            <div class="restaurant-card">
+                <div class="restaurant-logo" style="background: #008c4f;">
+                    <span style="font-size: 18px; font-weight: bold; color: white;">PAPA<br>JOHNS</span>
+                </div>
+                <div class="restaurant-info">
+                    <h4 class="restaurant-name">Papa Johns</h4>
+                </div>
+            </div>
+            <div class="restaurant-card">
+                <div class="restaurant-logo" style="background: #e4002b;">
+                    <span style="font-size: 24px; font-weight: bold; color: white;">KFC</span>
+                </div>
+                <div class="restaurant-info">
+                    <h4 class="restaurant-name">KFC West London</h4>
+                </div>
+            </div>
+            <div class="restaurant-card">
+                <div class="restaurant-logo" style="background: #fff;">
+                    <span style="font-size: 16px; font-weight: bold; color: #e31837;">Texas<br>Chicken</span>
+                </div>
+                <div class="restaurant-info">
+                    <h4 class="restaurant-name">Texas Chicken</h4>
+                </div>
+            </div>
+            <div class="restaurant-card">
+                <div class="restaurant-logo" style="background: #ff6b00;">
+                    <span style="font-size: 16px; font-weight: bold; color: white;">BURGER<br>KING</span>
+                </div>
+                <div class="restaurant-info">
+                    <h4 class="restaurant-name">Burger King</h4>
+                </div>
+            </div>
+            <div class="restaurant-card">
+                <div class="restaurant-logo" style="background: #fff;">
+                    <span style="font-size: 16px; font-weight: bold; color: #e31837;">Shaurma<br>1</span>
+                </div>
+                <div class="restaurant-info">
+                    <h4 class="restaurant-name">Shaurma 1</h4>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- App Download Section -->
+    <section class="app-section">
+        <div class="app-content">
+            <div class="app-image">
+                <img src="https://images.unsplash.com/photo-1516321318423-f06f85e504b3?w=500&h=400&fit=crop" alt="App Preview">
+            </div>
+            <div class="app-right">
+                <h2 class="app-title">Order<span class="highlight">.</span>ing is more</h2>
+                <p class="app-subtitle"><span class="highlight">Personalised</span> & Instant</p>
+                <p class="app-description">Download the Order.uk app for faster ordering</p>
+                <div class="app-buttons">
+                    <a href="#" class="app-btn">
+                        <span class="app-btn-icon">🍎</span>
+                        <div class="app-btn-text">
+                            <div class="app-btn-small">Download on the</div>
+                            <div class="app-btn-large">App Store</div>
+                        </div>
+                    </a>
+                    <a href="#" class="app-btn">
+                        <span class="app-btn-icon">▶</span>
+                        <div class="app-btn-text">
+                            <div class="app-btn-small">GET IT ON</div>
+                            <div class="app-btn-large">Google Play</div>
+                        </div>
+                    </a>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Partner Section -->
+    <section class="partner-section">
+        <div class="partner-grid">
+            <div class="partner-card">
+                <img src="https://images.unsplash.com/photo-1556910103-1c02745aae4d?w=500&h=300&fit=crop" alt="Partner with us">
+                <div class="partner-overlay">
+                    <span class="partner-badge">Earn more with lower fees</span>
+                    <h3 class="partner-title">Signup as a business<br>Partner with us</h3>
+                    <a href="#" class="partner-btn">Get Started</a>
+                </div>
+            </div>
+            <div class="partner-card">
+                <img src="https://images.unsplash.com/photo-1526367790999-015075668a5a?w=500&h=300&fit=crop" alt="Ride with us">
+                <div class="partner-overlay">
+                    <span class="partner-badge">Avail exclusive perks</span>
+                    <h3 class="partner-title">Signup as a rider<br>Ride with us</h3>
+                    <a href="#" class="partner-btn">Get Started</a>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- FAQ Section -->
+    <section class="faq-section">
+        <div class="faq-content">
+            <div class="faq-header">
+                <h2 class="faq-title">Know more about us!</h2>
+                <div class="faq-tabs">
+                    <span class="faq-tab active">Frequent Questions</span>
+                    <span class="faq-tab">Who we are?</span>
+                    <span class="faq-tab">Partner Program</span>
+                    <span class="faq-tab">Help & Support</span>
+                </div>
+            </div>
+            <div class="faq-grid">
+                <div class="faq-questions">
+                    <div class="faq-question active">How does Order.UK work?</div>
+                    <div class="faq-question">What payment methods are accepted?</div>
+                    <div class="faq-question">Can I track my order in real-time?</div>
+                    <div class="faq-question">Are there any special discounts or promotions available?</div>
+                    <div class="faq-question">Is Order.UK available in my area?</div>
+                </div>
+                <div class="faq-steps">
+                    <div class="step-card">
+                        <div class="step-icon">📱</div>
+                        <h4 class="step-title">Place an Order!</h4>
+                        <p class="step-description">Place order through our website or Mobile app</p>
+                    </div>
+                    <div class="step-card">
+                        <div class="step-icon">📍</div>
+                        <h4 class="step-title">Track Progress</h4>
+                        <p class="step-description">Your can track your order status with delivery time</p>
+                    </div>
+                    <div class="step-card">
+                        <div class="step-icon">🍔</div>
+                        <h4 class="step-title">Get your Order!</h4>
+                        <p class="step-description">Receive your order at a lighting fast speed!</p>
+                    </div>
+                </div>
+            </div>
+            <p class="faq-footer">Order.UK simplifies the food ordering process. Browse through our diverse menu, select your favorite dishes, and proceed to checkout. Your delicious meal will be on its way to your doorstep in no time!</p>
+        </div>
+    </section>
+
+    <!-- Stats Section -->
+    <section class="stats-section">
+        <div class="stats-grid">
+            <div class="stat-item">
+                <div class="stat-number">546+</div>
+                <div class="stat-label">Registered Riders</div>
+            </div>
+            <div class="stat-item">
+                <div class="stat-number">789,900+</div>
+                <div class="stat-label">Orders Delivered</div>
+            </div>
+            <div class="stat-item">
+                <div class="stat-number">690+</div>
+                <div class="stat-label">Restaurants Partnered</div>
+            </div>
+            <div class="stat-item">
+                <div class="stat-number">17,457+</div>
+                <div class="stat-label">Food items</div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="footer-content">
+            <div class="footer-brand">
+                <div class="footer-logo">Order<span>.</span>uk</div>
+                <div class="footer-newsletter">
+                    <p class="footer-newsletter-title">Get Exclusive Deals in your Inbox</p>
+                    <form class="newsletter-form">
+                        <input type="email" placeholder="youremail@gmail.com">
+                        <button type="submit">Subscribe</button>
+                    </form>
+                    <p style="font-size: 11px; color: #666; margin-top: 10px;">we won't spam, read our email policy</p>
+                </div>
+                <div class="footer-social">
+                    <a href="#" class="social-icon">f</a>
+                    <a href="#" class="social-icon">📷</a>
+                    <a href="#" class="social-icon">🎵</a>
+                    <a href="#" class="social-icon">🐦</a>
+                </div>
+            </div>
+            <div class="footer-column">
+                <h4>Legal Pages</h4>
+                <ul class="footer-links">
+                    <li><a href="#">Terms and conditions</a></li>
+                    <li><a href="#">Privacy</a></li>
+                    <li><a href="#">Cookies</a></li>
+                    <li><a href="#">Modern Slavery Statement</a></li>
+                </ul>
+            </div>
+            <div class="footer-column">
+                <h4>Important Links</h4>
+                <ul class="footer-links">
+                    <li><a href="#">Get help</a></li>
+                    <li><a href="#">Add your restaurant</a></li>
+                    <li><a href="#">Sign up to deliver</a></li>
+                    <li><a href="#">Create a business account</a></li>
+                </ul>
+            </div>
+            <div class="footer-column">
+                <h4> </h4>
+                <ul class="footer-links">
+                    <li><a href="#"></a></li>
+                </ul>
+            </div>
+        </div>
+        <div class="footer-bottom">
+            <p>Order.uk Copyright 2024, All Rights Reserved.</p>
+            <div class="footer-bottom-links">
+                <a href="#">Privacy Policy</a>
+                <a href="#">Terms</a>
+                <a href="#">Pricing</a>
+                <a href="#">Do not sell or share my personal information</a>
+            </div>
+        </div>
+    </footer>
+
+    <!-- Floating Basket Button -->
+    <button class="floating-basket-btn" data-open-modal="basketModal">
+        <span>🧺 My basket</span>
+        <span class="floating-basket-btn-amount">£127.90</span>
+    </button>
+
+    <!-- Basket Popup -->
+    <div class="modal-overlay" id="basketModal">
+        <div class="modal">
+            <div class="modal-header-bar" style="background-image:url('assets/c__Users_acer_AppData_Roaming_Cursor_User_workspaceStorage_d00664a7a259bc148a748edf60ad3b67_images_Minimum_Delivery_Warning-8463b271-b6e1-442a-89f5-3e1c6c6b2d5a.png');">
+                <button class="modal-close" data-close-modal="basketModal">&times;</button>
+            </div>
+            <div class="modal-body">
+                <h3 class="modal-title">My Basket</h3>
+                <p class="modal-subtitle">Review your order, apply coupons and pick your free items.</p>
+
+                <div class="basket-layout">
+                    <div>
+                        <div class="basket-items">
+                            <div class="basket-item">
+                                <div class="basket-qty">1x</div>
+                                <div>
+                                    <div class="basket-info-title">12" Vegetarian Pizza</div>
+                                    <div class="basket-info-meta">No Mushrooms + green peppers</div>
+                                </div>
+                                <div class="basket-price">£27.90</div>
+                            </div>
+                            <div class="basket-item">
+                                <div class="basket-qty">1x</div>
+                                <div>
+                                    <div class="basket-info-title">17" Tandoori Pizza</div>
+                                    <div class="basket-info-meta">No Mushrooms + green peppers</div>
+                                </div>
+                                <div class="basket-price">£17.90</div>
+                            </div>
+                            <div class="basket-item">
+                                <div class="basket-qty">2x</div>
+                                <div>
+                                    <div class="basket-info-title">Coke Coca Cola</div>
+                                    <div class="basket-info-meta">330ml cans</div>
+                                </div>
+                                <div class="basket-price">£4.90</div>
+                            </div>
+                            <div class="basket-item">
+                                <div class="basket-qty">1x</div>
+                                <div>
+                                    <div class="basket-info-title">12" Vegetarian Pizza</div>
+                                    <div class="basket-info-meta">No Mushrooms + green peppers</div>
+                                </div>
+                                <div class="basket-price">£27.90</div>
+                            </div>
+                        </div>
+
+                        <div class="basket-warning">
+                            Minimum delivery is £20, you must spend <span>£10 more</span> for checkout.
+                        </div>
+                    </div>
+
+                    <div>
+                        <div class="basket-summary">
+                            <div class="basket-summary-row">
+                                <span>Sub Total</span>
+                                <span>£127.90</span>
+                            </div>
+                            <div class="basket-summary-row">
+                                <span>Discounts</span>
+                                <span>-£3.00</span>
+                            </div>
+                            <div class="basket-summary-row">
+                                <span>Delivery Fee</span>
+                                <span>£2.50</span>
+                            </div>
+                            <div class="basket-summary-row total">
+                                <span>Total to pay</span>
+                                <span>£127.90</span>
+                            </div>
+                        </div>
+
+                        <div style="margin-top:16px;">
+                            <button class="btn btn-secondary" style="width:100%;margin-bottom:10px;">Choose your free item…</button>
+                            <button class="btn btn-secondary" style="width:100%;justify-content:space-between;">
+                                <span>Apply Coupon Code here</span>
+                                <span>➜</span>
+                            </button>
+                        </div>
+
+                        <div class="modal-actions" style="margin-top:20px;flex-direction:column;align-items:stretch;">
+                            <button class="btn btn-primary" style="width:100%;">Checkout</button>
+                            <div class="modal-footer-note">
+                                Delivery & Tax will be calculated in the next step.
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Meal deal / Pizza selection Popup -->
+    <div class="modal-overlay" id="mealDealModal">
+        <div class="modal">
+            <div class="modal-header-bar" style="background-image:url('assets/c__Users_acer_AppData_Roaming_Cursor_User_workspaceStorage_d00664a7a259bc148a748edf60ad3b67_images_MealDealsrestaurant_detail-92c80005-58de-4252-9b9e-b7c26c978e01.png');">
+                <button class="modal-close" data-close-modal="mealDealModal">&times;</button>
+            </div>
+            <div class="modal-body">
+                <h3 class="modal-title">Please select your first Pizza</h3>
+                <p class="modal-subtitle">Customise Meal Deal 1 – choose any pizza below.</p>
+
+                <div class="options-layout">
+                    <div class="basket-items">
+                        <div class="basket-item">
+                            <div class="basket-qty">1</div>
+                            <div class="basket-info-title">Margherita</div>
+                            <div style="display:flex;align-items:center;gap:10px;justify-content:flex-end;">
+                                <button class="btn btn-secondary btn-qty" data-type="minus">-</button>
+                                <span>1</span>
+                                <button class="btn btn-secondary btn-qty" data-type="plus">+</button>
+                            </div>
+                        </div>
+                        <div class="basket-item">
+                            <div class="basket-qty">1</div>
+                            <div class="basket-info-title">Polo</div>
+                            <div style="display:flex;align-items:center;gap:10px;justify-content:flex-end;">
+                                <button class="btn btn-secondary btn-qty" data-type="minus">-</button>
+                                <span>1</span>
+                                <button class="btn btn-secondary btn-qty" data-type="plus">+</button>
+                            </div>
+                        </div>
+                        <div class="basket-item">
+                            <div class="basket-qty">2</div>
+                            <div class="basket-info-title">Hawaiian</div>
+                            <div style="display:flex;align-items:center;gap:10px;justify-content:flex-end;">
+                                <button class="btn btn-secondary btn-qty" data-type="minus">-</button>
+                                <span>2</span>
+                                <button class="btn btn-secondary btn-qty" data-type="plus">+</button>
+                            </div>
+                        </div>
+                        <div class="basket-item">
+                            <div class="basket-qty">1</div>
+                            <div class="basket-info-title">Toscana</div>
+                            <div style="display:flex;align-items:center;gap:10px;justify-content:flex-end;">
+                                <button class="btn btn-secondary btn-qty" data-type="minus">-</button>
+                                <span>1</span>
+                                <button class="btn btn-secondary btn-qty" data-type="plus">+</button>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="modal-actions">
+                        <div>
+                            <div class="basket-summary-row total" style="margin-bottom:4px;">
+                                <span>Total to pay</span>
+                                <span>£127.90</span>
+                            </div>
+                            <div class="modal-footer-note">Delivery & Tax will be calculated in the next step.</div>
+                        </div>
+                        <div style="display:flex;gap:10px;">
+                            <button class="btn btn-ghost" data-close-modal="mealDealModal">Take me back</button>
+                            <button class="btn btn-primary" data-open-modal="toppingsModal">Next Step</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Toppings Popup -->
+    <div class="modal-overlay" id="toppingsModal">
+        <div class="modal">
+            <div class="modal-header-bar" style="background-image:url('assets/c__Users_acer_AppData_Roaming_Cursor_User_workspaceStorage_d00664a7a259bc148a748edf60ad3b67_images_Customize_Pizzarestaurant_detail-300cb781-8d67-4d7e-8ddd-06a8ca1f5803.png');">
+                <button class="modal-close" data-close-modal="toppingsModal">&times;</button>
+            </div>
+            <div class="modal-body">
+                <div class="options-header">
+                    <div>
+                        <h3 class="modal-title">Customise your chicken Pizza</h3>
+                        <p class="modal-subtitle">Please select up to 4 options free!</p>
+                    </div>
+                    <div class="options-header-count">
+                        <span>3/4 Selected</span><br>
+                        you can still select 1 more item free
+                    </div>
+                </div>
+
+                <div class="options-layout">
+                    <div class="options-group">
+                        <div class="options-group-title">
+                            <span>🥕</span>
+                            <span>Vegetable Toppings</span>
+                        </div>
+                        <div class="options-grid">
+                            <label class="option-pill is-selected">
+                                <input type="checkbox" checked>
+                                <span>Cheese</span>
+                            </label>
+                            <label class="option-pill">
+                                <input type="checkbox">
+                                <span>Green peppers</span>
+                            </label>
+                            <label class="option-pill">
+                                <input type="checkbox">
+                                <span>Tomato</span>
+                            </label>
+                            <label class="option-pill">
+                                <input type="checkbox">
+                                <span>Mushrooms</span>
+                            </label>
+                            <label class="option-pill">
+                                <input type="checkbox">
+                                <span>Sweetcorn</span>
+                            </label>
+                            <label class="option-pill">
+                                <input type="checkbox">
+                                <span>Jalapenos</span>
+                            </label>
+                            <label class="option-pill">
+                                <input type="checkbox">
+                                <span>Olives</span>
+                            </label>
+                            <label class="option-pill">
+                                <input type="checkbox">
+                                <span>Pineapples</span>
+                            </label>
+                            <label class="option-pill is-selected">
+                                <input type="checkbox" checked>
+                                <span>Onions</span>
+                            </label>
+                        </div>
+                    </div>
+
+                    <div class="options-group">
+                        <div class="options-group-title">
+                            <span>🥩</span>
+                            <span>Meat Toppings</span>
+                        </div>
+                        <div class="options-grid">
+                            <label class="option-pill">
+                                <input type="checkbox">
+                                <span>Chicken</span>
+                            </label>
+                            <label class="option-pill">
+                                <input type="checkbox">
+                                <span>Beef</span>
+                            </label>
+                            <label class="option-pill">
+                                <input type="checkbox">
+                                <span>Salami</span>
+                            </label>
+                            <label class="option-pill">
+                                <input type="checkbox">
+                                <span>Pepperoni</span>
+                            </label>
+                            <label class="option-pill is-selected">
+                                <input type="checkbox" checked>
+                                <span>Chicken Tikka</span>
+                            </label>
+                            <label class="option-pill">
+                                <input type="checkbox">
+                                <span>Fish</span>
+                            </label>
+                        </div>
+                    </div>
+
+                    <div class="options-group">
+                        <div class="options-group-title">
+                            <span>🦐</span>
+                            <span>Seafood Toppings</span>
+                        </div>
+                        <div class="options-grid">
+                            <label class="option-pill is-selected">
+                                <input type="checkbox" checked>
+                                <span>Tuna</span>
+                            </label>
+                            <label class="option-pill">
+                                <input type="checkbox">
+                                <span>Anchovies</span>
+                            </label>
+                            <label class="option-pill">
+                                <input type="checkbox">
+                                <span>Prawns</span>
+                            </label>
+                        </div>
+                    </div>
+
+                    <div class="modal-actions">
+                        <div>
+                            <div class="basket-summary-row total" style="margin-bottom:4px;">
+                                <span>Total to pay</span>
+                                <span>£127.90</span>
+                            </div>
+                            <div class="modal-footer-note">Delivery & Tax will be calculated in the next step.</div>
+                        </div>
+                        <div style="display:flex;gap:10px;">
+                            <button class="btn btn-ghost" data-close-modal="toppingsModal">Take me back</button>
+                            <button class="btn btn-primary" data-open-modal="requestModal">Next Step</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Special request Popup -->
+    <div class="modal-overlay" id="requestModal">
+        <div class="modal">
+            <div class="modal-header-bar" style="background-image:url('assets/c__Users_acer_AppData_Roaming_Cursor_User_workspaceStorage_d00664a7a259bc148a748edf60ad3b67_images_Add_your_Requestrestaurant_detail-cfedd792-2d3d-44c9-8541-8cbc15ea0378.png');">
+                <button class="modal-close" data-close-modal="requestModal">&times;</button>
+            </div>
+            <div class="modal-body">
+                <h3 class="modal-title">Add your special request</h3>
+                <p class="modal-subtitle">Write any extra instructions for the restaurant or rider.</p>
+                <textarea class="request-textarea" placeholder="Write your special instructions here…"></textarea>
+
+                <div class="modal-actions">
+                    <div>
+                        <div class="basket-summary-row total" style="margin-bottom:4px;">
+                            <span>Total to pay</span>
+                            <span>£127.90</span>
+                        </div>
+                        <div class="modal-footer-note">Delivery & Tax will be calculated in the next step.</div>
+                    </div>
+                    <div style="display:flex;gap:10px;">
+                        <button class="btn btn-ghost" data-close-modal="requestModal">Take me back</button>
+                        <button class="btn btn-primary" data-close-modal="requestModal">Add</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Postcode Popup -->
+    <div class="modal-overlay" id="postcodeModal">
+        <div class="modal">
+            <div class="modal-header-bar" style="background-image:url('assets/c__Users_acer_AppData_Roaming_Cursor_User_workspaceStorage_d00664a7a259bc148a748edf60ad3b67_images_Delivery_Popup_Desktoprestaurant_detail-d54a862a-ea0f-4b6f-8241-9541ae47ea85.png');">
+                <button class="modal-close" data-close-modal="postcodeModal">&times;</button>
+            </div>
+            <div class="modal-body">
+                <div class="postcode-layout">
+                    <div>
+                        <h3 class="modal-title">Please Enter Your Post Code</h3>
+                        <p class="modal-subtitle">To start placing a delivery order, please enter your full postcode here.</p>
+                        <div class="postcode-input-row">
+                            <input type="text" placeholder="e.g. A41 1JJ" id="postcodeInput">
+                            <button class="btn btn-primary" id="postcodeFindBtn">Find</button>
+                        </div>
+                        <div class="modal-footer-note" style="margin-top:10px;">
+                            or you can continue without postcode to browse restaurants.
+                        </div>
+                    </div>
+                    <div class="postcode-image">
+                        <img src="assets/c__Users_acer_AppData_Roaming_Cursor_User_workspaceStorage_d00664a7a259bc148a748edf60ad3b67_images_Home_Desktop_Lighter_Versionhomedesign-c11257b2-c1b7-4a56-9681-4ea1761d51bb.png" alt="Delivery illustration">
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        (function () {
+            const body = document.body;
+
+            function openModal(id) {
+                const modal = document.getElementById(id);
+                if (!modal) return;
+                modal.classList.add('is-open');
+                body.style.overflow = 'hidden';
+            }
+
+            function closeModal(id) {
+                const modal = document.getElementById(id);
+                if (!modal) return;
+                modal.classList.remove('is-open');
+                // if no other modal is open, unlock scroll
+                const anyOpen = document.querySelector('.modal-overlay.is-open');
+                if (!anyOpen) {
+                    body.style.overflow = '';
+                }
+            }
+
+            // Open modal buttons
+            document.querySelectorAll('[data-open-modal]').forEach(function (btn) {
+                btn.addEventListener('click', function (e) {
+                    e.preventDefault();
+                    const id = btn.getAttribute('data-open-modal');
+                    // simple step flow: if opening a new modal, close all others
+                    document.querySelectorAll('.modal-overlay.is-open').forEach(function (open) {
+                        open.classList.remove('is-open');
+                    });
+                    openModal(id);
+                });
+            });
+
+            // Close modal buttons
+            document.querySelectorAll('[data-close-modal]').forEach(function (btn) {
+                btn.addEventListener('click', function (e) {
+                    e.preventDefault();
+                    const id = btn.getAttribute('data-close-modal');
+                    closeModal(id);
+                });
+            });
+
+            // Close modal when clicking outside content
+            document.querySelectorAll('.modal-overlay').forEach(function (overlay) {
+                overlay.addEventListener('click', function (e) {
+                    if (e.target === overlay) {
+                        overlay.classList.remove('is-open');
+                        const anyOpen = document.querySelector('.modal-overlay.is-open');
+                        if (!anyOpen) {
+                            body.style.overflow = '';
+                        }
+                    }
+                });
+            });
+
+            // Visual selection state for toppings
+            document.querySelectorAll('.option-pill input').forEach(function (checkbox) {
+                checkbox.addEventListener('change', function () {
+                    const pill = checkbox.closest('.option-pill');
+                    if (!pill) return;
+                    if (checkbox.checked) {
+                        pill.classList.add('is-selected');
+                    } else {
+                        pill.classList.remove('is-selected');
+                    }
+                });
+            });
+
+            // Make hero "Change Location" link also open postcode modal
+            const changeLocation = document.querySelector('.change-location');
+            if (changeLocation) {
+                changeLocation.addEventListener('click', function (e) {
+                    e.preventDefault();
+                    openModal('postcodeModal');
+                });
+            }
+        })();
+    </script>
+</body>
+</html>
